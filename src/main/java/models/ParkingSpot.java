@@ -7,6 +7,13 @@ public class ParkingSpot {
     private ParkingSpotStatus status;
     private Floor floor;
 
+    public ParkingSpot(int number, VehicleType vehicleType, ParkingSpotStatus status, Floor floor) {
+        this.number = number;
+        this.vehicleType = vehicleType;
+        this.status = status;
+        this.floor = floor;
+    }
+
     public int getNumber() {
         return number;
     }

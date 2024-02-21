@@ -1,16 +1,22 @@
 package models;
 
 public class Gate {
-    private int number;
+    private Long number;
     private GateType gateType;
     private Operator operator;
     private GateStatus gateStatus;
 
-    public int getNumber() {
+    public Gate(Long number, GateType gateType, GateStatus gateStatus) {
+        this.number = number;
+        this.gateType = gateType;
+        this.gateStatus = gateStatus;
+    }
+
+    public Long getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Long number) {
         this.number = number;
     }
 

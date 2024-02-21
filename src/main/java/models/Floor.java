@@ -1,11 +1,17 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Floor {
 
     private int floorNumber;
     private List<ParkingSpot> parkingSpots;
+
+    public Floor(int floorNumber) {
+        this.floorNumber = floorNumber;
+        this.parkingSpots = new ArrayList<>();
+    }
 
     public int getFloorNumber() {
         return floorNumber;

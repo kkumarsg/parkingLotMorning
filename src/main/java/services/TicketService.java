@@ -2,6 +2,7 @@ package services;
 
 import dtos.IssueTicketRequest;
 import exceptions.GateNotFoundException;
+import exceptions.ParkingLotFullException;
 import exceptions.ParkingLotNotFoundException;
 import models.*;
 import repositories.GateRepository;
@@ -20,9 +21,15 @@ public class TicketService {
     private ParkingLotRepository parkingLotRepository;
     private TicketRepository ticketRepository;
 
+    public TicketService(GateRepository gateRepository, VehicleRepository vehicleRepository, ParkingLotRepository parkingLotRepository, TicketRepository ticketRepository) {
+        this.gateRepository = gateRepository;
+        this.vehicleRepository = vehicleRepository;
+        this.parkingLotRepository = parkingLotRepository;
+        this.ticketRepository = ticketRepository;
+    }
 
     public Ticket issueTicket(IssueTicketRequest request) throws GateNotFoundException,
-            ParkingLotNotFoundException {
+            ParkingLotNotFoundException, ParkingLotFullException {
 
         /*
             1. SET TIME
@@ -47,13 +54,12 @@ public class TicketService {
 
         ticket.setVehicle(vehicle);
 
-        // feel free to pass this to strategy
         ParkingLot parkingLot = parkingLotRepository.getParkingLotById(request.getParkingLotId());
 
         ParkingPlaceAllotmentStrategy allotmentStrategy = request.getParkingPlaceAllotmentStrategy();
 
         ParkingSpot parkingSpot =
-                allotmentStrategy.getParkingSpot(request.getVehicleType(), request.getParkingLotId());
+                allotmentStrategy.getParkingSpot(request.getVehicleType(), parkingLot);
 
         ticket.setParkingSpot(parkingSpot);
         ticket.setNumber(request.getVehicleNumber()+ UUID.randomUUID());

@@ -12,6 +12,22 @@ public class IssueTicketRequest {
     private Long parkingLotId;
     private ParkingPlaceAllotmentStrategy parkingPlaceAllotmentStrategy;
 
+    public IssueTicketRequest(String vehicleNumber, Long gateId, Long parkingLotId, ParkingPlaceAllotmentStrategy parkingPlaceAllotmentStrategy) {
+        this.vehicleNumber = vehicleNumber;
+        this.gateId = gateId;
+        this.parkingLotId = parkingLotId;
+        this.parkingPlaceAllotmentStrategy = parkingPlaceAllotmentStrategy;
+    }
+
+    public IssueTicketRequest(VehicleType vehicleType, String vehicleNumber, String owner, Long gateId, Long parkingLotId, ParkingPlaceAllotmentStrategy parkingPlaceAllotmentStrategy) {
+        this.vehicleType = vehicleType;
+        this.vehicleNumber = vehicleNumber;
+        this.owner = owner;
+        this.gateId = gateId;
+        this.parkingLotId = parkingLotId;
+        this.parkingPlaceAllotmentStrategy = parkingPlaceAllotmentStrategy;
+    }
+
     public ParkingPlaceAllotmentStrategy getParkingPlaceAllotmentStrategy() {
         return parkingPlaceAllotmentStrategy;
     }
